@@ -33,8 +33,8 @@ data "archive_file" "python_lambda_package" {
   output_path = "lambda.zip"
 }
 
-resource "aws_lambda_function" "movie_poster_design_lambda" {
-  function_name = "movie_poster_design_lambda"
+resource "aws_lambda_function" "generate_image_lambda" {
+  function_name = "generate_image_lambda"
   filename      = "lambda.zip"
   source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
   role          = aws_iam_role.lambda_role.arn
@@ -44,7 +44,7 @@ resource "aws_lambda_function" "movie_poster_design_lambda" {
   
   environment {
     variables = {
-      BUCKET_NAME = aws_s3_bucket.movieposterdesign.bucket
+      BUCKET_NAME = aws_s3_bucket.generatedimage.bucket
     }
   }
 

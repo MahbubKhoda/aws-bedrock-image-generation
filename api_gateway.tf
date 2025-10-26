@@ -24,13 +24,13 @@ resource "aws_api_gateway_integration" "lambda_integration" {
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.movie_poster_design_lambda.invoke_arn
+  uri                     = aws_lambda_function.generate_image_lambda.invoke_arn
 }
 
 resource "aws_lambda_permission" "allow_apigw_lambda" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.movie_poster_design_lambda.function_name
+  function_name = aws_lambda_function.generate_image_lambda.function_name
   principal     = "apigateway.amazonaws.com"
 
   source_arn = "${aws_api_gateway_rest_api.image_api.execution_arn}/*/*"

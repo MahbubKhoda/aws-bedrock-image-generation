@@ -3,6 +3,9 @@
 
 Generate images using AWS Bedrock Titan model via a serverless Lambda function and API Gateway.
 
+## Architecture
+![AWS Bedrock Image Generation Architecture](architecture.png)
+
 ## Features
 - Generate high-quality images from text prompts using AWS Bedrock
 - Store generated images in Amazon S3
